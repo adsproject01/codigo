@@ -20,9 +20,9 @@ public class Curator extends SiteUser{
 	
 	
 	
-	public String getBranches() throws IOException, InterruptedException {
-		return github.get("/branches");
-	}
+	/*public String getBranches() throws IOException, InterruptedException {
+		return github.getBranches();
+	}*/
 	
 	
 	
@@ -45,13 +45,13 @@ public class Curator extends SiteUser{
 	
 	public static void main(String[] args) {
 		Curator curator = new Curator("config.ini", "adsprojet01@gmail.com");
-		try {
+		/*try {
 			//curator.deleteBranch("adsprojet01@gmail.com@2021-11-03T16_34_11.435296100");
-			System.out.println(curator.getBranches());
+			//System.out.println(curator.getBranches());
 			System.out.println("done!");
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

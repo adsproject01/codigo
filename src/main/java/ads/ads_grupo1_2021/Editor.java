@@ -119,7 +119,7 @@ public class Editor extends SiteUser{
 			InputStream fileStream = new FileInputStream("ADS.owl");
 			String content = new String(Objects.requireNonNull(fileStream).readAllBytes(), StandardCharsets.UTF_8);
 			editor.makeContribuition("testing.txt","let's see if this works", content, "adsprojet01@gmail.com");
-			System.out.println("hello?");
+			System.out.println("done?");
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
