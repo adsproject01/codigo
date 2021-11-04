@@ -2,7 +2,9 @@ package ads.ads_grupo1_2021;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import org.ini4j.Config;
 import org.ini4j.Ini;
 
 /**
@@ -10,19 +12,23 @@ import org.ini4j.Ini;
  * the many technologies picked to do the project so if any credentials/locations/etc change
  * it's not necessary to recompile/change the code
  * @author Susana Polido
- * @version 1.1
+ * @version 1.2
  */
 public class Configurations {
 	private Ini file;
 	
 	/**
 	 * Creates Configurations object from the location/name of the ini file
+	 * and sets it to allow multiple values for the same key
 	 * @param file_name
-	 * @since 1.0
+	 * @since 1.2
 	 */
 	public Configurations(String file_name) {
 		try {
 			file = new Ini( new File(file_name));
+			Config config = new Config();
+			config.setMultiOption(true);
+			file.setConfig(config);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,12 +109,12 @@ public class Configurations {
 	
 	/**
 	 * Gets the authentication key of a curator that is stored in the ini file so the curator can access the repository  
-	 * @param curator the (user)name of the curator
 	 * @return the authentication key of the curator
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	public String getGitHubCurator(String curator) {
-		return "Bearer " + file.get("curators", curator);
+	private List<String> getGitHubCurators() {
+		Ini.Section section = file.get("github");
+		return section.getAll("curator");
 	}
 	
 	
@@ -116,11 +122,23 @@ public class Configurations {
 	
 	
 	/**
-	 * Gets the authentication key stored in the ini file that non curators can use to access the repository  
-	 * @return the authentication key of a non curator
-	 * @since 1.0
+	 * Checks if an email matches with a curator of the KB
+	 * @param email String email of the curator
+	 * @return if the sent email matches with the email of a curator
+	 * @since 1.2
 	 */
-	public String getGitHubNonCurator() {
+	public boolean isCurator(String email) {
+		return getGitHubCurators().contains(email);
+	}
+	
+	
+	
+	/**
+	 * Gets the authentication key stored in the ini file to access the repository  
+	 * @return the authentication key for the repository
+	 * @since 1.2
+	 */
+	public String getGitHubToken() {
 		return "Bearer " + getFromIni("key");
 	}
 	
@@ -134,9 +152,9 @@ public class Configurations {
 		System.out.println(ini.getRepoOwner());
 		System.out.println(ini.getRepository());
 		System.out.println(ini.getRepoMainBranch());
-		System.out.println(ini.getGitHubCurator("curator_teste"));
-		System.out.println(ini.getGitHubCurator("adsprojet01@gmail.com"));
-		System.out.println(ini.getGitHubNonCurator());
+		System.out.println(ini.isCurator("hello"));
+		System.out.println(ini.isCurator("adsprojet01@gmail.com"));
+		System.out.println(ini.getGitHubToken());
 	}
 
 }

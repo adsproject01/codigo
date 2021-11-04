@@ -38,6 +38,8 @@ public class GitHubRestAPI {
 		this.authorization = authorization;
 		this.baseUrl = baseUrl;
 		this.objectMapper =  new ObjectMapper();
+		System.out.println("autorization: " + authorization);
+		System.out.println("baseurl: " + baseUrl);
 	}
 	
 	
@@ -148,6 +150,7 @@ public class GitHubRestAPI {
 	 */
 	public String getMasterBranchSHA() throws IOException, InterruptedException {
         String body = get("/git/refs/heads");
+        System.out.println(body);
         String sha = objectMapper.readTree(body)
                 .get(0)
                 .get("object")

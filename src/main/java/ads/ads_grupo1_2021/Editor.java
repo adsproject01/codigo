@@ -26,7 +26,7 @@ public class Editor extends SiteUser{
 	 */
 	public Editor(String ini_name) {
 		this.ini = new Configurations(ini_name);
-		github = new GitHubRestAPI(ini.getGitHubNonCurator(), ini.getGitHubBaseUrl());
+		github = new GitHubRestAPI(ini.getGitHubToken(), ini.getGitHubBaseUrl());
 	}
 	
 	
