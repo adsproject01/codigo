@@ -2,6 +2,7 @@ package ads.ads_grupo1_2021;
 
 import java.io.IOException;
 
+
 public class Curator extends SiteUser{
 	private Configurations ini;
 	private GitHubRestAPI github;
@@ -16,7 +17,7 @@ public class Curator extends SiteUser{
 		github = new GitHubRestAPI(ini.getGitHubToken(), ini.getGitHubBaseUrl());
 	}
 	
-	
+	//TODO make methods that call GitHubAPI's methods
 	
 	
 	
