@@ -34,8 +34,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * This class handles the communication to github.
  * It was made with the help of https://www.twilio.com/blog/improve-workflow-github-api-java
  * and https://docs.github.com/en/rest/reference/repos
- * <p>
- * Not counting the methods that get SHA, this is likely just REST functions rather than specific for github
  * @author Susana Polido
  * @version 0.3
  */
@@ -49,7 +47,7 @@ public class GitHubRestAPI {
 	
 	
 	/**
-	 * Creates a comunication bridge between a github repository and the application
+	 * Creates a communication bridge between a github repository and the application
 	 * by accepting an authentication key and a github repository url
 	 * @param authorization the authentication key to interact with the github
 	 * @param baseUrl where the repository is located
